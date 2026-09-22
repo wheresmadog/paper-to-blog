@@ -1,0 +1,15 @@
+{
+  "name": "paper-to-blog",
+  "owner": {
+    "name": "wheresmadog"
+  },
+  "plugins": [
+    {
+      "name": "paper-to-blog",
+      "description": "Create accessible, source-faithful blog versions of research papers from local PDFs or arXiv URLs.",
+      "version": "0.1.0",
+      "source": "./plugins/paper-to-blog"
+    }
+  ]
+}
+

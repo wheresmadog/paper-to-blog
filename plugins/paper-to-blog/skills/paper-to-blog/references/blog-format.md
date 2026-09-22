@@ -89,3 +89,4 @@ Place this in a `<footer>`:
   <p>Source: Original Paper Title, version/date, <a href="...">canonical URL</a> or local PDF filename.</p>
 </footer>
 ```
+
