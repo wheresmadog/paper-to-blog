@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>When the Repository Is Documentation: Inside SMART</title>
+<meta name="description" content="SMART is a performance-modeling library whose main branch holds design docs instead of code, with AI sub-agents regenerating the implementation on every version bump.">
+<style>
+  body { max-width: 42rem; margin: 0 auto; padding: 2rem 1.1rem 4rem; line-height: 1.65;
+         font-family: Georgia, "Times New Roman", serif; color: #1c1c1c; background: #fdfcfa; }
+  h1 { font-size: 1.9rem; line-height: 1.25; }
+  h2 { font-size: 1.25rem; margin-top: 2.4rem; }
+  .dek { font-size: 1.05rem; color: #555; font-style: italic; }
+  .byline { font-size: 0.9rem; color: #666; }
+  pre { background: #f2f0ec; padding: 0.9rem; overflow-x: auto; font-size: 0.82rem; line-height: 1.45; }
+  code { font-family: ui-monospace, Menlo, Consolas, monospace; }
+  aside { border-left: 3px solid #c9c3b6; padding: 0.2rem 0 0.2rem 1rem; color: #444; font-size: 0.95rem; }
+  figcaption { font-size: 0.85rem; color: #666; }
+  footer { margin-top: 3rem; border-top: 1px solid #ddd; padding-top: 1rem; font-size: 0.85rem; color: #666; }
+  blockquote { margin: 0; border-left: 3px solid #c9c3b6; padding-left: 1rem; color: #444; font-style: italic; }
+</style>
+</head>
+<body>
+<main>
+<article>
+
+<header>
+  <h1>When the Repository Is Documentation, Not Code</h1>
+  <p class="dek">A team at Google DeepMind, MIT, Stanford, and Google built a machine-learning performance model whose main branch contains almost no source. Humans edit prose; agents rebuild the library from scratch every version.</p>
+  <p class="byline">On <em>Design Docs Are All You Need: An AI-native Machine-Learning Performance Tool</em>, by Samuel Kushnir, Kimia Noorbakhsh, Kavya Sreedhar, Liqun Cheng, Ming Liu, Parthasarathy Ranganathan, Mohammad Alizadeh, Fred Kjolstad, and Suvinay Subramanian. arXiv preprint, September 2026.</p>
+</header>
+
+<section>
+  <h2>The question</h2>
+  <p>Here is the question the paper puts on the table: if regenerating a whole library from its specification now costs a few hours and about a hundred dollars, why patch the old one again? The authors' answer is that you would not, and they have rearranged a real internal tool around it. Their system, SMART, is a symbolic performance-modeling library for ML systems whose main branch holds roughly 50 design documents — about 9,000 lines of specification prose — plus a handful of leaf utilities.</p>
+  <p>Everything else is a build product. Coding sub-agents read the docs and emit the implementation; every human change is a natural-language edit to a doc. The paper frames this as a claim about which artifact deserves to be durable: prose, the authors argue, survives architecture churn better than code that encodes today's assumptions about it.</p>
+  <p>This is a five-page position piece rather than a full evaluation, and reading it that way matters for judging what it establishes. What follows is the argument, the machinery behind it, and the gap between the two.</p>
+</section>
+
+<section>
+  <h2>Why performance models rot faster than most software</h2>
+  <p>Performance-modeling frameworks sit between the two fastest-moving layers of the stack — model architectures above, accelerators and interconnects below — and absorb churn from both directions. An abstraction that looked safe a year ago, say that every transformer layer has the same shape, collapses once mixture-of-experts routing, latent attention, and separate prefill and decode phases arrive.</p>
+  <p>The paper formalizes the cost of incremental maintenance. Let <em>S<sub>t</sub></em> be the spec at time <em>t</em> and <em>G</em> a code generator, human or agent. A greenfield build computes <em>G</em>(<em>S<sub>t</sub></em>); in practice the next revision hands the generator the old implementation too, computing <em>G</em>(<em>S<sub>t+1</sub></em>, <em>C<sub>t</sub></em>). Technical debt is the distance between the two. Because deleting your own code is unpleasant and slow, that distance stays well above zero and compounds with every revision.</p>
+  <p>A second failure mode is specific to the AI era, which they call context-window myopia: an agent cannot hold a mature codebase in one prompt, so developers feed it fragmented snippets. Missing global invariants and architectural intent, it produces changes that are locally plausible and globally incoherent. Regenerating from scratch drives the first term to zero by construction; the document structure addresses the second.</p>
+</section>
+
+<section>
+  <h2>The regeneration workflow</h2>
+  <p>The docs form a directed acyclic graph — hardware topology and numerics precede collective-cost models, which precede the model catalog. The edges are not hand-maintained: read-only agents analyze the documents and infer the dependencies themselves. An orchestrator then walks the resolved graph in topological order, assigning one coding sub-agent per self-contained doc.</p>
+  <p>The orchestrator keeps a central log of where sub-agents struggled to interpret prose and what bugs surfaced in earlier waves. The paper draws three benefits from this factoring: each generation step has a bounded context window, which the authors say raises the probability of correct generation; the log tells engineers which documents need prose refinement, a per-doc "hardness" signal; and the orchestrator can route by complexity, sending the core DSL design to a larger model while cheaper models handle downstream docs.</p>
+  <p>Output must clear a gate before replacing the previous build: reconciliation against hand-built reference models, parameter guards, and unit tests, with a repair loop on failure. The stated economics: a full clean-slate regeneration takes 1.5 to 3 hours and costs around 100 USD in API spend using Claude Code — roughly 20% of a weekly budget on a high-tier plan, which the authors read as making continuous regeneration practical.</p>
+</section>
+
+<section>
+  <h2>Worked examples as the load-bearing convention</h2>
+  <p>The most transferable idea concerns how the docs are written. Prevailing advice for AI-assisted development is top-down: write the right tests and high-level rules, a constitution the generator must obey. The authors argue for a complementary bottom-up ingredient — worked examples tracing how a piece of pseudo-code executes on a specific input, with intermediate shapes, intermediate values, and the exact closed-form cost expression that should result.</p>
+  <p>Their reasoning is that a concrete trace pins down semantics prose leaves ambiguous, keeping independent agentic generations consistent with each other; they cite in-context learning as the mechanism. The style is deliberately small and checkable: on a 2×2×2 torus with wraparound the per-node link count is 3, not 6, so an all-gather of V bytes costs such-and-such. Every number-bearing doc ends with a reconciliation anchor — a small preset whose expected outputs are stated exactly and enforced by generated tests.</p>
+  <p>This is worth separating from the larger thesis. You need not accept that repositories should become documentation to take the narrower point: a spec with hand-executed traces gives a generator something to check itself against and a reader something to disagree with. The paper presents it as a principle they arrived at, not a hypothesis tested against an alternative doc style.</p>
+</section>
+
+<section>
+  <h2>A minimal symbolic IR</h2>
+  <p>Regeneration also constrains what is specified: the abstractions must be few, orthogonal, and stable under architecture churn. The whole model rests on a single recursively defined operation. An <code>Op</code> carries symbolic input and output shapes, an <code>OpCost</code> of SymPy expressions per cost key (compute, memory, communication), and a resource reservation table mapping resources against cycles. It is either an interior node — a loop with a trip count and body graph, or a plain subgraph — or a leaf.</p>
+  <p>Leaves are where software meets hardware. The target is TPUs, so leaves are TPU-shaped: an MXU matmul tile, a VMEM tile load, an ICI collective. The algorithm side composes leaves into loop nests; the system side prices them. Swapping either — a new attention variant, a new interconnect generation — touches only its own docs. Models are authored in a thin Python-embedded tracing DSL where every dimension is a SymPy symbol, so one trace serves the whole design space.</p>
+  <p>Distribution is expressed as sharding annotations rather than hand-placed collectives: tensors name the mesh axes each dimension is sharded on, and a sharded-einsum wrapper infers the collectives — an all-gather of a sharded contracting weight, a reduce-scatter when an output reduces over a sharded dimension. Only layout-moving collectives stay explicit, such as the dispatch all-to-all in a DeepSeekMoE block.</p>
+</section>
+
+<section>
+  <h2>Two speeds of evaluation</h2>
+  <p>Turning a tree of per-op costs into wall-clock time happens in one of two modes. In fast mode, loops roll up coarsely: each leaf's cost is scaled by the product of enclosing trip counts, and simple analytical schedulers model communication–computation overlap as composable transforms in the style of a roofline bound. Evaluation is closed-form and fast enough to sweep thousands of design points.</p>
+  <p>In slow mode, each loop is modulo-scheduled into its resource reservation table, software-pipelining the body against per-resource capacity, and the achieved initiation interval rolls up recursively. That yields dependency- and resource-aware schedules for the points sweeps flag as interesting — the familiar division of labor between cheap approximation and expensive analysis.</p>
+  <p>Underneath both, costs propagate upward symbolically, so every roll-up produces a closed-form SymPy expression in the design space's free variables — batch, sequence length, bandwidths, mesh axes, datatype widths. Numeric binding happens only at the edge, one substitution per design point. This is also what makes the reconciliation anchors enforceable: a doc can state the exact expected expression for a collective's cost, and the generated tests assert it.</p>
+</section>
+
+<section>
+  <h2>What this paper does not show</h2>
+  <p>The central empirical claim appears in the abstract and conclusion: regenerated implementations reproduce hand-audited reference models — including DeepSeek-V3 serving on a TPU pod slice — to round-off precision. The body contains no experiments section, no results table, and no description of how that reconciliation was measured. Treat it as a reported engineering outcome from the authors' practice, not a demonstrated result with an inspectable methodology.</p>
+  <p>Much else goes unmeasured. There is no comparison against an incrementally maintained baseline, so the debt term in Equation 1 is argued rather than quantified. There is no reported regeneration failure rate, no measure of how often the repair loop fires, and no ablation separating worked examples from the DAG structure or the minimal IR. The cost and time figures are stated for this library at its current size and are not projected to larger systems.</p>
+  <p>Scope matters too. Reconciliation validates a build only insofar as the hand-built references are correct, and the paper does not say how they are maintained as the docs evolve. The domain is also unusually favorable: a performance model is a pure function with checkable numeric outputs, targeted at one hardware family. Nothing here establishes that the workflow holds for software with state, external dependencies, or no closed-form oracle.</p>
+</section>
+
+<section>
+  <h2>Why it is interesting anyway</h2>
+  <p>The idea worth carrying away is the inversion of what a repository is for. Conventionally, code is the artifact and documentation the lossy commentary that drifts out of date. Here documentation is the artifact and code the build output — self-documenting by construction, and, as the authors put it, surfacing vague intent early, because a guess must be written into a doc to survive.</p>
+  <p>The authors are careful about where they think this generalizes: wherever specs churn faster than software absorbs them. That is a real and narrow condition, and ML performance modeling satisfies it about as sharply as any domain. The three enablers — worked-example docs, a machine-discovered dependency DAG, and a minimal symbolic IR — are separable, and the first is adoptable today by anyone writing specs for an agent, independent of the rest.</p>
+  <p>The unresolved question is what happens to the reference models. Regeneration drives patching debt to zero only because a trusted oracle catches regressions, and that oracle is still hand-built and hand-audited. If the references are themselves code that ages, the debt has not been eliminated so much as relocated to a smaller, more critical surface — which this position piece leaves to future work.</p>
+</section>
+
+<footer>
+  <p>Source: <a href="https://arxiv.org/abs/2609.05364">arXiv:2609.05364v1</a> [cs.PL], submitted 4 September 2026. Full PDF of v1 inspected. All numbers, quotations, and claims above are drawn from that version; the paper reports no experimental section, and characterizations of its evidence reflect that.</p>
+</footer>
+
+</article>
+</main>
+</body>
+</html>

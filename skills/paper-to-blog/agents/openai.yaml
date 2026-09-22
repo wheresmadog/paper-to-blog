@@ -1,0 +1,4 @@
+interface:
+  display_name: "Paper Blog Version"
+  short_description: "Turn papers into clear, source-faithful blog posts"
+  default_prompt: "Use $paper-to-blog to turn this paper into a reader-friendly blog version."
