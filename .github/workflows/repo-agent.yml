@@ -1,0 +1,61 @@
+name: Repository agent
+
+on:
+  issues:
+    types: [opened]
+  issue_comment:
+    types: [created]
+
+permissions:
+  contents: read
+  issues: write
+  pull-requests: read
+  discussions: read
+  actions: read
+  checks: read
+
+jobs:
+  answer:
+    if: ${{ vars.REPO_AGENT_AUTHOR_ID != '' && (github.event_name == 'issues' || (github.event_name == 'issue_comment' && !github.event.issue.pull_request)) }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.repository.default_branch }}
+          persist-credentials: false
+      - uses: astral-sh/setup-uv@v6
+        with:
+          version: "0.8.22"
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.13"
+      - name: Run shared agent
+        working-directory: .github
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+          REPO_AGENT_AUTHOR_ID: ${{ vars.REPO_AGENT_AUTHOR_ID }}
+          REPO_AGENT_MODEL: ${{ vars.REPO_AGENT_MODEL }}
+          LANGFUSE_PUBLIC_KEY: ${{ secrets.LANGFUSE_PUBLIC_KEY }}
+          LANGFUSE_SECRET_KEY: ${{ secrets.LANGFUSE_SECRET_KEY }}
+          LANGFUSE_BASE_URL: ${{ vars.LANGFUSE_BASE_URL }}
+          GITHUB_REPOSITORY: ${{ github.repository }}
+          GITHUB_API_URL: ${{ github.api_url }}
+          GITHUB_EVENT_NAME: ${{ github.event_name }}
+          GITHUB_EVENT_PATH: ${{ github.event_path }}
+        run: |
+          uv sync --frozen
+          uv run --frozen python -m unittest discover -s tests
+          uv run --frozen python -m repo_agent \
+            --event-name "$GITHUB_EVENT_NAME" \
+            --event-file "$GITHUB_EVENT_PATH" \
+            --output-dir "$GITHUB_WORKSPACE/agent-output" \
+            --publish
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: repo-agent-${{ github.run_id }}
+          path: agent-output/
+          if-no-files-found: ignore
+          retention-days: 7

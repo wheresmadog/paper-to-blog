@@ -1,0 +1,16 @@
+[project]
+name = "repo-agent"
+version = "0.1.0"
+description = "GitHub repository answering agent for Actions and local event replay"
+requires-python = ">=3.11"
+dependencies = [
+  "langchain>=1.0,<2",
+  "langchain-openai>=1.0,<2",
+  "langfuse>=4.7,<5",
+]
+
+[project.optional-dependencies]
+checkpoint = ["langgraph-checkpoint-sqlite>=3,<4"]
+
+[tool.uv]
+package = false
