@@ -1,0 +1,22 @@
+{
+  "action": "created",
+  "repository": {
+    "full_name": "wheresmadog/paper-to-blog"
+  },
+  "sender": {
+    "id": 123456789,
+    "login": "example-user"
+  },
+  "issue": {
+    "id": 100000001,
+    "number": 1,
+    "title": "How do I install the plugin?",
+    "body": "I want to use Paper to Blog in Codex Desktop.",
+    "html_url": "https://github.com/wheresmadog/paper-to-blog/issues/1"
+  },
+  "comment": {
+    "id": 200000001,
+    "body": "Which commands should I run to install it?",
+    "html_url": "https://github.com/wheresmadog/paper-to-blog/issues/1#issuecomment-200000001"
+  }
+}

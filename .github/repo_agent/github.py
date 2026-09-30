@@ -77,6 +77,17 @@ class GitHub:
     def repository_info(self) -> dict:
         return self.get("")
 
+    def latest_issue_comment(self, number: int) -> dict | None:
+        """Return the latest issue comment without downloading the entire thread."""
+        path = f"{self.base}/issues/{number}/comments?per_page=1"
+        comments, headers = self.request("GET", path)
+        if not comments:
+            return None
+        match = re.search(r'<([^>]+)>; rel="last"', headers.get("Link") or headers.get("link", ""))
+        if match:
+            comments, _ = self.request("GET", match.group(1))
+        return comments[-1] if comments else None
+
     def list_files(self, ref: str = "", prefix: str = "") -> list[str]:
         branch = ref or self.repository_info()["default_branch"]
         tree = self.get(f"/git/trees/{quote(branch, safe='')}", {"recursive": 1})
