@@ -1,15 +1,15 @@
 {
   "name": "paper-to-blog",
-  "version": "0.1.0",
-  "description": "Create accessible, source-faithful blog versions of research papers from local PDFs or arXiv URLs.",
+  "version": "0.2.0",
+  "description": "Create source-faithful blog articles and conference posters from research papers supplied as local PDFs or arXiv URLs.",
   "author": {
     "name": "wheresmadog"
   },
   "skills": "./skills/",
   "interface": {
     "displayName": "Paper to Blog",
-    "shortDescription": "Turn papers into clear, faithful blog posts.",
-    "longDescription": "Paper to Blog explains a research paper's problem, core idea, evidence, tradeoffs, and significance for a broader audience. It accepts local PDFs and arXiv links and keeps claims grounded in the inspected source.",
+    "shortDescription": "Turn papers into blog posts and conference posters.",
+    "longDescription": "Paper to Blog includes paper-to-blog for accessible HTML articles and paper-to-poster for visual conference research posters. Both accept local PDFs or arXiv links and preserve the paper’s evidence, figures, and limitations.",
     "developerName": "wheresmadog",
     "category": "Productivity",
     "capabilities": [
@@ -19,4 +19,3 @@
     "defaultPrompt": "Turn this PDF or arXiv paper into a clear, source-faithful blog version."
   }
 }
-

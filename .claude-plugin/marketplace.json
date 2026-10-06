@@ -6,10 +6,9 @@
   "plugins": [
     {
       "name": "paper-to-blog",
-      "description": "Create accessible, source-faithful blog versions of research papers from local PDFs or arXiv URLs.",
-      "version": "0.1.0",
+      "description": "Create source-faithful blog articles and conference posters from research papers supplied as local PDFs or arXiv URLs.",
+      "version": "0.2.0",
       "source": "./plugins/paper-to-blog"
     }
   ]
 }
-
