@@ -60,6 +60,8 @@ Keep paper title, authors, affiliations, publication status, and attribution acc
 
 Default to a complete editable HTML document with local image assets and print CSS, plus a single-page PDF when an available renderer can export it faithfully. Follow an explicitly requested format instead, preserving an editable source when practical. Prefer available document, PDF, or presentation workflows for their respective formats; do not require a particular external service or paid tool.
 
+Save the poster package under `output/<name>/` relative to the workspace, using a descriptive paper-based name (for example, `output/aerialvla-poster/`). Keep the final PDF, editable HTML, and required local assets together there; place an optional archive at `output/<name>-editable.zip`. This poster-specific location takes precedence over format-specific workflow conventions such as `output/pdf/`. Honor an explicit user-supplied destination instead. Keep scratch files outside the final package.
+
 For HTML:
 
 - Include UTF-8 and viewport metadata, a meaningful title and description, semantic headings, and escaped source-derived text.
@@ -80,6 +82,7 @@ Before delivery:
 - Check that every template placeholder is replaced. Inspect panel occupancy and rebalance undersized content: enlarge useful visuals or combine panels rather than pad with prose or leave large blank regions.
 - Render or open the final layout and inspect the whole canvas and detailed crops at readable scale. Check reading order, contrast, legibility, overlaps, clipped content, figure resolution, and unexplained acronyms.
 - Verify a PDF is one page at the requested size, or that HTML print preview produces one page at that size without cropping or overflow. If visual or print verification is unavailable, state that limitation.
+- Confirm final files are under `output/<name>/` (or the user's explicit destination), without an extra format directory such as `pdf`, and that the editable HTML resolves its local assets there.
 - Verify that the poster distinguishes supported conclusions from limits, uses accurate author metadata, and includes no invented venue status, contact information, or QR destinations.
 
 Fix discovered problems before delivery. Prefer shortening secondary prose or simplifying the layout to shrinking all text below a readable size.
