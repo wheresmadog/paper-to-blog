@@ -4,7 +4,9 @@ Use this guide for a poster that supports both a quick walk-by reading and a lon
 
 ## Default canvas and hierarchy
 
-For the generic wide landscape poster (1200 × 600 mm), use the bundled template: a compact full-width header followed by six modular panels in two rows. The top row starts with three panels; the lower row can have a wider pipeline panel and a narrower explanation panel. Resize or merge panels when a wide figure or a theory argument needs it. Use modest margins and consistent gutters so content occupies the canvas without crowding.
+For the generic wide landscape poster (1200 × 600 mm), start from the bundled template: a compact full-width header followed by six modular panels in two rows. Its card dimensions and grid spans are initial layout choices, not fixed requirements. Adjust widths, heights, row proportions, and panel count to the paper's content while retaining the template's visual style and the overall canvas size. Enlarge a method or evidence panel when its figure needs space; reduce, merge, or split supporting panels as useful. Use modest margins and consistent gutters so content occupies the canvas without crowding.
+
+For vertical posters, use [the portrait template](../assets/poster-template-portrait.html): an A0 canvas (841 × 1189 mm), with three cards in each of two columns. Card heights vary independently in each column, producing staggered boundaries that illustrate flexible sizing. Guide reading with section numbers from the top toward the bottom. Adapt card sizes and spans as in landscape; a wide figure can occupy a full-width panel. The portrait template retains the same typography, blue heading bars, rounded outlines, and local assets, with a centered stacked footer.
 
 A useful starting typography range at this physical size is 60–80 pt for the title, 30–38 pt for section headings, 22–28 pt for body copy, and 20–24 pt for captions. These are design starting points, not conference requirements. Adapt them to the dimensions and inspect a rendered preview. Embedded figure labels must remain legible too; large surrounding text cannot rescue a tiny plot legend.
 

@@ -23,11 +23,11 @@ Clients that namespace plugin skills may expose `/paper-to-blog:paper-to-poster`
 
 ## Establish the poster brief
 
-Infer reasonable defaults and proceed when the user has supplied a paper. Ask only when a missing constraint materially blocks the requested deliverable.
+Before choosing a template, establish the user's preferred orientation. If the user has not supplied an orientation, a template, or dimensions that determine orientation, ask: "Would you like a landscape (1200 × 600 mm) or A0 portrait (841 × 1189 mm) poster?" Wait for the answer before choosing a template or generating the layout; do not silently default to landscape. You may retrieve and read the paper while waiting. Do not ask again when the choice is already established in the conversation. Infer reasonable defaults for other preferences unless a missing constraint materially blocks the deliverable.
 
 Honor supplied templates, dimensions, orientation, and formats. If a named venue or year implies compliance requirements, retrieve its current official poster instructions, or use the user's supplied guidelines; venue names alone do not establish page size or a template. If guidelines cannot be verified, state that compliance is unverified and use the generic layout for a draft rather than claim approval.
 
-Without dimensions or a template, use a wide 2:1 landscape canvas (1200 by 600 mm) and label it as a generic default, not a venue requirement. This default follows the reference poster’s composition; it is not an official ICLR size. Default to English and an audience of AI researchers familiar with the broad field but unfamiliar with this paper. Target roughly 400–700 words excluding references, adapting to the paper, canvas, and user preferences.
+Once the orientation is established, use the matching template. Without supplied dimensions, use 1200 by 600 mm for landscape or A0 (841 by 1189 mm) for portrait. Label these as generic defaults, not venue requirements; neither is an official ICLR size. Default to English and an audience of AI researchers familiar with the broad field but unfamiliar with this paper. Target roughly 400–700 words excluding references, adapting to the paper, canvas, and user preferences.
 
 ## Build a compact evidence map
 
@@ -44,9 +44,11 @@ Keep author claims distinct from your synthesis. A reported result must not beco
 
 ## Compose the poster
 
-Read [references/poster-format.md](references/poster-format.md) and [references/reference-style.md](references/reference-style.md) when creating or revising the layout. Start from the bundled [assets/poster-template.html](assets/poster-template.html), replacing all placeholders with source-grounded content and adapting panel spans to the research. The template makes the default visual composition reproducible from a bare skill invocation; do not require the user to repeat a style brief. Supplied templates take precedence.
+Read [references/poster-format.md](references/poster-format.md) and [references/reference-style.md](references/reference-style.md) when creating or revising the layout. Start from the bundled [landscape template](assets/poster-template-landscape.html) or, for vertical posters, the [portrait template](assets/poster-template-portrait.html), replacing all placeholders with source-grounded content and adapting panel spans to the research. The templates make the visual composition reproducible from a bare skill invocation; do not require the user to repeat a style brief. Supplied templates take precedence.
 
-Use a compact centered author header, blue section bars, thin rounded panel outlines, and a tightly composed two-row modular grid. Favor diagrams, annotated source figures, equations, and small evidence tables over long prose. Aim for substantial visual content in each main panel; do not leave a large empty lower third or produce an article arranged in columns. When the paper has few source visuals, create clearly labeled explanatory diagrams from its actual mechanism, never fake empirical plots.
+Treat the template's card widths, heights, and grid spans as starting values. Adjust individual card sizes and row proportions to suit the paper's figures, evidence, and reading order; merge or split cards when useful. Give a wide method diagram or central result more space and concise supporting material less space. Preserve the template's visual style and the chosen overall canvas size while making these layout choices. If the user supplies mandatory layout dimensions, honor them.
+
+Use a compact centered author header, blue section bars, thin rounded panel outlines, and a tightly composed modular grid: start with two rows for landscape or three rows for portrait, then adapt to the content. Favor diagrams, annotated source figures, equations, and small evidence tables over long prose. Aim for substantial visual content in each main panel; do not leave a large empty lower third or produce an article arranged in columns. When the paper has few source visuals, create clearly labeled explanatory diagrams from its actual mechanism, never fake empirical plots.
 
 Build a visible reading path: problem → contribution → mechanism → evidence → takeaway and limits. Use short paragraphs, bullets, labels, and captions; the blog skill's three-paragraph rule does not apply. Make the main result understandable without opening the paper. Keep notation only when it carries the contribution and define unavoidable acronyms.
 
