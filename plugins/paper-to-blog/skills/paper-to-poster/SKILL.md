@@ -62,6 +62,8 @@ Keep paper title, authors, affiliations, publication status, and attribution acc
 
 Default to a complete editable HTML document with local image assets and print CSS, plus a single-page PDF when an available renderer can export it faithfully. Follow an explicitly requested format instead, preserving an editable source when practical. Prefer available document, PDF, or presentation workflows for their respective formats; do not require a particular external service or paid tool.
 
+Before rendering or exporting, read and follow the shared [rendering guide](../../references/rendering.md) for environment checks, failure diagnosis, allowed alternatives, and incomplete-export reporting.
+
 Save the poster package under `output/<name>/` relative to the workspace, using a descriptive paper-based name (for example, `output/aerialvla-poster/`). Keep the final PDF, editable HTML, and required local assets together there; place an optional archive at `output/<name>-editable.zip`. This poster-specific location takes precedence over format-specific workflow conventions such as `output/pdf/`. Honor an explicit user-supplied destination instead. Keep scratch files outside the final package.
 
 For HTML:
@@ -71,7 +73,7 @@ For HTML:
 - Use local assets or embedded images and CSS; avoid dependencies on remote fonts, scripts, or libraries that can fail during export. Keep the printable package usable offline.
 - Use accessible contrast and a restrained visual hierarchy. Do not rely only on color to distinguish methods or results.
 
-For PDF, verify the actual page count and physical dimensions after export. Do not call an unexported HTML document a PDF or claim that an unverified export is print-ready. If PDF export is unavailable, deliver the printable HTML and assets and clearly state that PDF export remains unverified.
+For PDF, verify the actual page count and physical dimensions after export. Do not call an unexported HTML document a PDF or claim that an unverified export is print-ready. Use the shared rendering guide to distinguish incomplete PDF export from an exported PDF whose verification remains incomplete.
 
 Include a compact on-poster source citation with the paper's version and URL. In the delivery note, list the poster file, editable source, and required assets, plus the size/orientation and any unverified venue requirements or unavailable source material. Keep intermediates separate from final artifacts.
 
