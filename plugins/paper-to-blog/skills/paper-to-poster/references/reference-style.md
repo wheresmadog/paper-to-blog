@@ -1,28 +1,15 @@
-# Default visual reference
+# Layout references
 
-The user-selected design reference is the Agent-X ICLR 2026 poster:
-https://iclr.cc/media/PosterPDFs/ICLR%202026/10009109.png?t=1775358478.2575574
+## Landscape: user-supplied IdeaLens poster image
 
-Its associated paper is https://arxiv.org/abs/2505.24876. These are style and paper-to-poster compression references, not sources of scientific content for unrelated input papers. The bundled template encodes the visual traits below, so runtime access to the reference URLs is optional.
+The supplied image establishes composition only, not paper content or mandatory section names. Use its full-width top accent rule, left-aligned title/author block, right source/metadata area, thin header divider, and four vertical columns. Divide columns with thin rules rather than enclosing them in cards. Each column starts with a blue heading and horizontal rule. Multiple sections may stack vertically within a column, with their own headings and horizontal rules, as in the reference’s Method/Evaluation pairing. Stack boundaries can differ by column; do not impose a shared two-row grid. The third column is slightly wider, and its first section rule starts lower to leave a heading-free area for continuation from the second column’s final section. Use this only for actual continuing content; adjust or remove the area as needed. Keep title, headings and body tightly aligned, with narrow outer margins and consistent internal gutters. Use the original blue palette rather than the reference’s red accents. Do not preassign Problem, Method, Evaluation, Results, Analysis or Takeaways; choose headings and content from the input paper.
 
-## Traits to reproduce
+Do not copy the reference’s authors, links, numbers, plots or scientific claims into unrelated posters. Keep source figures faithful and limitations visible. Put all citations, version information and verified links in the top-right block. Omit the bottom source footer.
 
-- A wide landscape image, approximately 2.06:1 (5120 × 2491 pixels), with a white background and narrow outer margins.
-- A compact centered blue title, author line, and affiliation line. Side positions may hold verified logos or QR codes; omit these when not appropriate and let the title use the space.
-- A dense but legible two-row arrangement of rounded panels with blue heading bars, centered white section headings, and thin blue borders.
-- Different panel widths: wider method/pipeline and evaluation regions; smaller definitions or metrics regions. Panels need not form identical cards.
-- A main method/data diagram, small statistics table, evidence table or plot, explanatory labels, and a short concluding panel. Their exact mix follows the input paper's evidence.
-- Short captions that say what a visual demonstrates; selective bold text makes key findings visible during a quick scan.
-- Most of the area below the header contains useful visuals or concise supporting content, with consistent gutters and very little unused lower-page area.
+## Portrait: existing visual style
 
-## Adaptation to other papers
+The portrait template retains the Agent-X reference’s centered blue title, blue section bars and rounded panel outlines. The reference URL is https://iclr.cc/media/PosterPDFs/ICLR%202026/10009109.png?t=1775358478.2575574. Its content is not scientific evidence for another paper.
 
-Reproduce the composition and visual hierarchy, not the Agent-X content, logos, author list, dataset numbers, acceptance status, or QR destinations. Keep the input paper's title and metadata. The poster may differ from a later arXiv revision in author lists or results; always ground the new poster in the input version.
+## Visual acceptance
 
-A systems paper with one source figure can use that figure alongside a clearly labeled symbolic-model diagram, compact reported-facts table, and fast/slow-mode comparison. These supporting visuals explain source material and must not masquerade as experimental plots. Avoid inventing benchmark bars just to match a data-heavy reference.
-
-Limitations remain visible, but a critique must not displace the paper's actual contribution as the main poster story. Put the most consequential evidence boundary near the reported result and keep it concise.
-
-## Visual acceptance check
-
-At whole-poster scale, the title, blue panel headings, method graphic, and central evidence should be immediately visible. At detailed scale, figure labels and captions should be readable. Check all panels for overflow and for large unexplained empty regions. Adapt panel sizes and visual scale before adding filler text or shrinking the typography.
+Inspect whole-poster hierarchy and detailed labels. Landscape uses a single row of columns; sections may stack independently within them. Check that stack heights serve the content and do not force all columns into synchronized upper/lower rows. Check heading alignment, gutters, separators, figure aspect ratios and overflow. Rebalance useful visual space before shrinking text or adding filler.

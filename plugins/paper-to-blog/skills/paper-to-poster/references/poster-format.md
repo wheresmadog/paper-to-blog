@@ -4,7 +4,7 @@ Use this guide for a poster that supports both a quick walk-by reading and a lon
 
 ## Default canvas and hierarchy
 
-For the generic wide landscape poster (1200 × 600 mm), start from the bundled template: a compact full-width header followed by six modular panels in two rows. Its card dimensions and grid spans are initial layout choices, not fixed requirements. Adjust widths, heights, row proportions, and panel count to the paper's content while retaining the template's visual style and the overall canvas size. Enlarge a method or evidence panel when its figure needs space; reduce, merge, or split supporting panels as useful. Use modest margins and consistent gutters so content occupies the canvas without crowding.
+For the generic wide landscape poster (1200 × 600 mm), use the bundled template’s four vertical columns in a single row. Match the supplied reference composition: a thin accent rule across the top; a left-aligned title, authors and affiliations; a right source/metadata block separated by a vertical rule; a horizontal divider below the header; and four body columns separated by thin vertical rules. The third column starts slightly wider. Use blue left-aligned headings with thin blue top rules rather than rounded cards or filled section bars. Keep headings and content as unspecified placeholders until the paper is read. A column may contain multiple sections stacked vertically, as in the reference’s method/evaluation column. The template demonstrates optional stacks in columns 2 and 4 without naming their sections. The third column demonstrates a small heading-free continuation area before its first section rule: content from the second column’s last section may continue here. Adjust this area to the actual continuation content, or remove it when unused. Adjust each stack independently, merge or remove sections when unnecessary, and avoid a shared horizontal row boundary across all columns. Adjust column widths for visual readability while preserving the column-based reading path. Read each column top to bottom, then move right. Put all citations, the exact paper version and verified links in the top-right source block; there is no bottom footer.
 
 For vertical posters, use [the portrait template](../assets/poster-template-portrait.html): an A0 canvas (841 × 1189 mm), with three cards in each of two columns. Card heights vary independently in each column, producing staggered boundaries that illustrate flexible sizing. Guide reading with section numbers from the top toward the bottom. Adapt card sizes and spans as in landscape; a wide figure can occupy a full-width panel. The portrait template retains the same typography, blue heading bars, rounded outlines, and local assets, with a centered stacked footer.
 
@@ -16,7 +16,7 @@ Establish three levels of attention:
 2. Main visual and result: what mechanism or evidence supports the answer?
 3. Supporting details: what settings, assumptions, and limits make the result interpretable?
 
-Use a white background, dark text, blue heading bars with white centered text, thin blue rounded outlines, and a small set of accent colors unless the user specifies branding. Encode comparisons with labels or line styles as well as colors. Aim for a logical reading path rather than symmetrical boxes of equal importance.
+For landscape use the original blue palette (#244da0 headings and accents, #c6d2e5 separators, #eff4fb callouts), white background and dark body text; reproduce the supplied reference’s composition. Portrait retains blue heading bars and rounded outlines. Encode comparisons with labels or line styles as well as colors. Aim for a logical reading path rather than symmetrical boxes of equal importance.
 
 ## Content regions
 
@@ -44,7 +44,7 @@ End with a concise supported conclusion and the most consequential boundary or o
 
 ### Footer
 
-Provide a compact paper citation and versioned URL, plus a small number of essential references if needed. Add project links or contact information only when supplied or verified. Do not fabricate a repository or email to fill empty space.
+For landscape, put the compact paper citation, versioned URL and any essential references in the top-right source block. For portrait, use the footer. Add project links or contact information only when supplied or verified. Do not fabricate a repository or email to fill empty space.
 
 ## Figure handling
 
