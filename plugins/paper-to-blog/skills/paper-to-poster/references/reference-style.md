@@ -6,10 +6,10 @@ The supplied image establishes composition only, not paper content or mandatory 
 
 Do not copy the reference’s authors, links, numbers, plots or scientific claims into unrelated posters. Keep source figures faithful and limitations visible. Put all citations, version information and verified links in the top-right block. Omit the bottom source footer.
 
-## Portrait: existing visual style
+## Portrait: shared landscape visual style
 
-The portrait template retains the Agent-X reference’s centered blue title, blue section bars and rounded panel outlines. The reference URL is https://iclr.cc/media/PosterPDFs/ICLR%202026/10009109.png?t=1775358478.2575574. Its content is not scientific evidence for another paper.
+Use A0 portrait (841 × 1189 mm) with the same blue palette, typography, top accent rule, left-aligned title/author header, right source block, header divider and thin-rule section treatment as landscape. Adapt the body to two vertical columns with independently stacked sections. The right column starts with a heading-free continuation area for the left column’s final section, above section 4. Adjust its height to the continuing content, or remove it when unused. Keep the section headings left-aligned and blue; omit filled heading bars, rounded panel outlines and the bottom source footer.
 
 ## Visual acceptance
 
-Inspect whole-poster hierarchy and detailed labels. Landscape uses a single row of columns; sections may stack independently within them. Check that stack heights serve the content and do not force all columns into synchronized upper/lower rows. Check heading alignment, gutters, separators, figure aspect ratios and overflow. Rebalance useful visual space before shrinking text or adding filler.
+Inspect whole-poster hierarchy and detailed labels. Both orientations use a single row of columns (four in landscape, two in portrait); sections may stack independently within them. Check that stack heights serve the content and do not force all columns into synchronized upper/lower rows. Check heading alignment, gutters, separators, figure aspect ratios and overflow. Rebalance useful visual space before shrinking text or adding filler.
