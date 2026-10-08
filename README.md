@@ -73,7 +73,7 @@ In Claude Code, use the plugin namespace:
 /paper-to-blog:paper-to-poster https://arxiv.org/abs/2609.05364
 ```
 
-Add a venue, year, template, dimensions, or format when relevant, for example: “make a wide landscape poster for an AI research audience.” For NeurIPS, ICML, or another named conference, the skill checks supplied or current official poster requirements before claiming venue compliance. Its generic default is wide 2:1 landscape (1200 × 600 mm), not a conference-specific requirement.
+Add a venue, year, template, dimensions, or format when relevant, for example: “make a wide landscape poster for an AI research audience.” For NeurIPS, ICML, or another named conference, the skill checks supplied or current official poster requirements before claiming venue compliance. The skill asks for orientation and uses generic dimensions: wide 2:1 landscape (1200 × 600 mm) or A0 portrait (841 × 1189 mm), not conference-specific requirements.
 
 The poster uses a compact header and a two-row grid of visual panels with blue section bars, following the bundled conference-poster template. It includes the problem, contribution, method, strongest evidence, and visible limitations. It selects informative figures rather than reproducing all of them, and uses concise text rather than the blog skill's three-paragraph rule. It delivers editable, printable HTML with local assets and a single-page PDF when a suitable exporter is available; unavailable export or verification is disclosed.
 
