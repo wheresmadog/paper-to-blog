@@ -40,7 +40,7 @@ Choose **User scope** when prompted to make it available in all of your projects
 
 ## Use it
 
-The source must be either a path to a PDF available to the current agent or an `arxiv.org` `/abs/` or `/pdf/` URL. Quote a local path that contains spaces.
+The source must be either a path to a PDF available to the current agent or an `arxiv.org` `/abs/`, `/html/`, or `/pdf/` URL. For arXiv URLs, all three skills prefer the full-text HTML page for the requested version when available, falling back to that version's PDF if HTML is unavailable or incomplete. PDF may also supplement missing figures, equations, or appendices. Quote a local path that contains spaces.
 
 In Claude Code, the installed plugin skill is namespaced:
 
