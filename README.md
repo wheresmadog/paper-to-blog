@@ -1,6 +1,6 @@
 # Paper to Blog
 
-Turn a research paper into a reader-friendly blog article or a visual conference poster. The plugin includes two skills, `paper-to-blog` and `paper-to-poster`. Both accept a local PDF or an `arxiv.org` paper URL, preserve the paper's version, and explain the evidence and limits with source figures.
+Turn a research paper into a reader-friendly blog article, a visual conference poster, or a single explainer image. The plugin includes three skills: `paper-to-blog`, `paper-to-poster`, and `paper-to-image`. All accept a local PDF or an `arxiv.org` paper URL, preserve the paper's version, and explain the evidence and limits with source figures.
 
 The blog skill returns standalone HTML by default. Every editorial section has exactly three paragraphs; figures contain the source pixels, descriptive alternative text, and a faithful caption. The poster skill uses concise text and selected visuals in a printable layout, with an editable HTML source and PDF export when available.
 
@@ -25,7 +25,7 @@ codex plugin marketplace add /absolute/path/to/paper-to-blog
 codex plugin add paper-to-blog@paper-to-blog
 ```
 
-In Codex Desktop, start a new chat and select or `@`-mention **Paper to Blog** if you want to force use of the plugin. Codex can also select the appropriate installed skill automatically for a request that clearly asks for a blog article or conference poster.
+In Codex Desktop, start a new chat and select or `@`-mention **Paper to Blog** if you want to force use of the plugin. Codex can also select the appropriate installed skill automatically for a request that clearly asks for a blog article, conference poster, or paper explainer image.
 
 ## Install in Claude Code
 
@@ -76,6 +76,22 @@ In Claude Code, use the plugin namespace:
 Add a venue, year, template, dimensions, or format when relevant, for example: “make a wide landscape poster for an AI research audience.” For NeurIPS, ICML, or another named conference, the skill checks supplied or current official poster requirements before claiming venue compliance. Its generic default is wide 2:1 landscape (1200 × 600 mm), not a conference-specific requirement.
 
 The poster uses a compact header and a two-row grid of visual panels with blue section bars, following the bundled conference-poster template. It includes the problem, contribution, method, strongest evidence, and visible limitations. It selects informative figures rather than reproducing all of them, and uses concise text rather than the blog skill's three-paragraph rule. It delivers editable, printable HTML with local assets and a single-page PDF when a suitable exporter is available; unavailable export or verification is disclosed.
+
+### Create a single explainer image
+
+```text
+/paper-to-image https://arxiv.org/abs/2610.05538
+```
+
+In clients that namespace plugin skills:
+
+```text
+/paper-to-blog:paper-to-image https://arxiv.org/abs/2610.05538
+```
+
+The default is a dark 1080 × 1920 portrait graphic with a large headline, one connected flowchart explaining the method’s inputs, operations, and outputs. It omits takeaway cards and detailed experimental results; necessary branches and feedback loops stay within the same chart. You can specify a different size, style, language, or output destination.
+
+The skill returns `image.png`, editable HTML or SVG, and a claim-to-source record under `output/<paper-slug>-image/`. It reads the full paper, preserves the source version, and inspects the exported image before delivery. This is a concise visual explanation of one central idea, rather than a conference poster.
 
 ## Blog output requirements
 

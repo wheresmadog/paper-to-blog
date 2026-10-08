@@ -1,6 +1,6 @@
 {
   "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
   "name": "paper-to-blog",
-  "version": "0.2.0",
-  "description": "Create source-faithful blog articles and conference posters from research papers supplied as local PDFs or arXiv URLs."
+  "version": "0.3.0",
+  "description": "Create source-faithful blog articles, conference posters, and single-image explainers from research papers supplied as local PDFs or arXiv URLs."
 }

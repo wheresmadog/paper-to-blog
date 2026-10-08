@@ -1,15 +1,15 @@
 {
   "name": "paper-to-blog",
-  "version": "0.2.0",
-  "description": "Create source-faithful blog articles and conference posters from research papers supplied as local PDFs or arXiv URLs.",
+  "version": "0.3.0",
+  "description": "Create source-faithful blog articles, conference posters, and single-image explainers from research papers supplied as local PDFs or arXiv URLs.",
   "author": {
     "name": "wheresmadog"
   },
   "skills": "./skills/",
   "interface": {
     "displayName": "Paper to Blog",
-    "shortDescription": "Turn papers into blog posts and conference posters.",
-    "longDescription": "Paper to Blog includes paper-to-blog for accessible HTML articles and paper-to-poster for visual conference research posters. Both accept local PDFs or arXiv links and preserve the paper’s evidence, figures, and limitations.",
+    "shortDescription": "Turn papers into blogs, posters, and explainer images.",
+    "longDescription": "Paper to Blog includes paper-to-blog for accessible HTML articles, paper-to-poster for conference research posters, and paper-to-image for single-image visual explainers. All accept local PDFs or arXiv links and preserve the paper’s evidence and limitations.",
     "developerName": "wheresmadog",
     "category": "Productivity",
     "capabilities": [

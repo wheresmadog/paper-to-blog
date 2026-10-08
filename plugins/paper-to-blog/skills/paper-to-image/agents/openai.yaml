@@ -1,0 +1,4 @@
+interface:
+  display_name: "Paper to Image"
+  short_description: "Turn research papers into clear explainer images"
+  default_prompt: "Use $paper-to-image to turn this paper into a single source-faithful explainer image."
